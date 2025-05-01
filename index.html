@@ -1,346 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Personal journey and reflections on social work practice and identity"/>
-  <title>My WHY: Social Work Journey</title>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.7.0/tsparticles.min.js"></script>
-  <style>
-    :root {
-      --main-gradient: linear-gradient(135deg, #B2F2BB, #D5B4E1);
-      --highlight-color: #90E0EF;
-      --text-color: #333;
-      --bg-light: #F0F5F9;
-      --bg-alt: #FFFFFF;
-      --transition-speed: 0.6s;
-      --image-max-height: 60vh;
-      --border-radius: 12px;
-    }
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      background: var(--bg-light);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: var(--text-color);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    /* particles.js */
-    #particles-js {
-      position: fixed; top:0; left:0;
-      width:100%; height:100%;
-      z-index:-1; opacity:0.6;
-    }
-    /* header */
-    header {
-      padding:6rem 2rem; text-align:center;
-      background:var(--main-gradient); color:#fff;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    }
-    header img {
-      width:180px; height:180px; border-radius:50%;
-      border:4px solid #fff; object-fit:cover;
-      margin-bottom:1.5rem; animation:float 4s ease-in-out infinite;
-      box-shadow:0 6px 16px rgba(0,0,0,0.15);
-    }
-    header h1 {
-      font-size:clamp(2rem,5vw,3.5rem);
-      animation:fadeInDown var(--transition-speed) ease-out;
-      margin-bottom:1rem;
-    }
-    header p {
-      font-size:1.2rem; max-width:600px; margin:0 auto;
-      opacity:0.9;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
-    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);} }
-    /* nav */
-    nav {
-      background:#fff; padding:1rem 0;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
-      position:sticky; top:0; z-index:100;
-    }
-    .nav-container {
-      display:flex; justify-content:center; align-items:center;
-      max-width:1200px; margin:0 auto;
-    }
-    .nav-links {
-      display:flex; list-style:none; gap:2rem;
-    }
-    .nav-links a {
-      color:var(--text-color); text-decoration:none;
-      font-weight:500; padding:0.5rem 1rem;
-      border-radius:var(--border-radius);
-      transition:all 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background:var(--main-gradient); color:#fff;
-      transform:translateY(-2px);
-    }
-    /* sections */
-    .section {
-      padding:5rem 2rem;
-      scroll-margin-top:5rem;
-    }
-    .section:nth-of-type(even){ background:var(--bg-alt); }
-    .section-header { text-align:center; margin-bottom:3rem; }
-    .section h2 {
-      font-size:clamp(1.8rem,4vw,2.5rem);
-      color:var(--text-color); margin-bottom:1rem;
-      position:relative; display:inline-block;
-    }
-    .section h2::after {
-      content:''; position:absolute; left:50%; transform:translateX(-50%);
-      bottom:-10px; width:80px; height:4px;
-      background:var(--highlight-color); border-radius:2px;
-    }
-    .section-description {
-      max-width:700px; margin:0 auto 2rem;
-      font-size:1.1rem; color:#555; text-align:center;
-    }
-    /* generic photo-grid */
-    .photo-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:1.5rem; max-width:1000px; margin:0 auto 3rem;
-    }
-    .photo-grid img {
-      width:100%; aspect-ratio:1/1; object-fit:cover;
-      border-radius:var(--border-radius);
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      transition:all 0.3s ease;
-    }
-    .photo-grid img:hover {
-      transform:scale(1.03); box-shadow:0 8px 20px rgba(0,0,0,0.15);
-    }
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Personal journey and reflections on social work practice and identity"/>
+        <meta name="author" content="Nico Shumin Luo" />
+        <title>My WHY: Social Work Journey</title>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.7.0/tsparticles.min.js"></script>
+      
+        <link rel="stylesheet" href="style.css?v=2" />
 
-    .photo-grid img.zoom-on-hover:hover {
-     transform: scale(1.8);
-     z-index: 5;
-    }   
+        <link rel="icon" type="image/png" href="favicon.png" />
 
-
-    /* identity grid */
-    .identity-grid {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1rem; max-width:1000px; margin:0 auto; align-items:start;
-    }
-    .identity-grid figure {
-      margin:0; text-align:center; overflow:hidden;
-      border-radius:var(--border-radius);
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      transition:transform 0.3s ease;
-    }
-    .identity-grid figure:hover {
-      transform:translateY(-5px);
-      box-shadow:0 8px 25px rgba(0,0,0,0.15);
-    }
-    .identity-grid img {
-      width:100%; height:auto; object-fit:cover;
-      max-height:var(--image-max-height);
-    }
-    .identity-grid figcaption {
-      padding:1rem; background:#fff;
-    }
-    .caption-text {
-      font-weight:600; color:var(--text-color);
-    }
-    .caption-meta {
-      font-size:0.85rem; color:#777; margin-top:0.2rem;
-    }
-    /* content */
-    .why-content {
-      max-width:800px; margin:0 auto;
-      line-height:1.8; font-size:1.1rem; color:#444;
-    }
-    .why-content p { margin-bottom:1.5rem; }
-    .highlight-box {
-  background: linear-gradient(135deg, rgba(144, 224, 239, 0.15), rgba(213, 180, 225, 0.12));
-  border-radius: var(--border-radius);
-  padding: 2rem;
-  margin: 3rem auto;
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1.8;
-  color: #444;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  text-align: center;
-  max-width: 800px;
-}
-
-    /* footer */
-    footer {
-      padding:5rem 2rem 3rem; text-align:center;
-      background:var(--main-gradient); color:#fff;
-    }
-    /* responsive */
-    @media(max-width:768px){ .identity-grid{grid-template-columns:1fr 1fr;} }
-    @media(max-width:480px){ .identity-grid{grid-template-columns:1fr;} }
-    /* --- For caption above the image --- */
-.top-caption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.caption-above {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #444;
-  margin-bottom: 0.5rem;
-}
-
-/* --- For caption overlay in bottom-right --- */
-.overlay-caption {
-  position: relative;
-  display: inline-block;
-}
-
-.caption-overlay {
-  position: absolute;
-  bottom: 8px;
-  right: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  font-size: 0.85rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
-.big-text {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #222;
-}
-.carousel-container {
-  position: relative;
-  max-width: 800px;
-  margin: 2rem auto;
-  overflow: hidden;
-}
-
-.carousel-slide {
-  display: none;
-  text-align: center;
-  transition: opacity 0.6s ease-in-out;
-}
-
-.carousel-slide.active {
-  display: block;
-}
-
-.carousel-slide img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-.carousel-caption {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.caption-text {
-  font-weight: bold;
-  color: #222;
-  font-size: 1.1rem;
-}
-
-.caption-meta {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
-  border: none;
-  padding: 0.8rem 1.2rem;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-
-.carousel-nav:hover {
-  background: rgba(255,255,255,1);
-}
-
-.carousel-nav.prev {
-  left: 10px;
-}
-
-.carousel-nav.next {
-  right: 10px;
-}
-.poker-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
-  padding-top: 2rem;
-  justify-items: center;
-}
-
-.poker-card {
-  width: 100%;
-  max-width: 220px;
-  transform: rotate(calc(-3deg + 6deg * (var(--i) % 3)));
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  cursor: pointer;
-  opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
-  animation-delay: calc(0.1s * var(--i));
-}
-
-.poker-card:hover {
-  transform: scale(1.05) rotate(0deg);
-  z-index: 10;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.poker-card img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-  aspect-ratio: 4/5;
-}
-
-.poker-card .caption {
-  font-size: 0.9rem;
-  margin-top: 8px;
-  color: #444;
-  text-align: center;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px) rotate(-5deg);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(calc(-3deg + 6deg * (var(--i) % 3)));
-  }
-}
-  </style>
 </head>
+      
 
 
 <body>
     <div id="particles-js"></div>
 
     <header id="intro">
-      <img src="avatar.jpg" alt="Profile photo" />
-      <h1>My WHY: A Social Work Journey</h1>
-    </header>
+        <img src="avatar.jpg" alt="Profile photo" />
+        <h1>My WHY: A Social Work Journey</h1>
+        <p class="intro-text fade-in-up">
+          I’m not sure I’m human.<br />
+          Not in the way people expect it.<br />
+          Maybe I’m just air — watching, feeling, drifting.
+        </p>
+      </header>
+      
     
-    <nav aria-label="Main navigation">
+    <nav aria-label="Main navigation" class="fade-in-up">
       <div class="nav-container">
         <ul class="nav-links">
           <li><a href="#intro">Home</a></li>
@@ -351,53 +42,59 @@
         </ul>
       </div>
     </nav>
+  
     
   <!-- Naming Story -->
-  <section id="naming" class="section">
+  <section id="naming" class="section fade-in-up">
     <div class="section-header">
       <h2>What's in my Name?</h2>
     </div>
     <div class="photo-grid">
         <figure class="photo-card top-caption">
-            <figcaption class="caption-above">Luó</figcaption>
+            <figcaption class="caption-above">Luó: To gather, to weave together.</figcaption>
             <img src="naming1.jpg" alt="..." loading="lazy" class="zoom-on-hover"/>
           </figure>
           <figure class="photo-card top-caption">
-            <figcaption class="caption-above">Shū</figcaption>
+            <figcaption class="caption-above">Shū: To let go, to give.</figcaption>
             <img src="naming2.jpg" alt="..." loading="lazy" class="zoom-on-hover"/>
           </figure>
           <figure class="photo-card top-caption">
-            <figcaption class="caption-above">Mín</figcaption>
+            <figcaption class="caption-above">Mín: the People</figcaption>
             <img src="naming3.jpg" alt="..." loading="lazy" class="zoom-on-hover"/>
           </figure>
     </div>
     <div class="container why-content">
  <p>
-  My last name comes first, as is tradition in Chinese culture. But it's my given name that feels almost... too on-brand.  
+  My last name comes first, as is tradition in Chinese culture.  
 </p>
 
 <p>  
   The second character, <span class="big-text">Shū</span>, usually means <strong>"comfort"</strong> or <strong>"relief."</strong>  
-  But if you break it down visually, it's made of two smaller parts:  
+  But break it down and you'll find two parts:  
   <span class="big-text">one means "to let go," the other means "to give."</span>
 </p>
 
 <p>
   The final character? It means <span class="big-text">"the people."</span>  
-  So my full name kind of translates to: <em>let go, give, for the people.</em>
+  So technically, my full name reads something like: <em>let go, give, for the people.</em>
 </p>
 
-
+<p>
+    I knew the literal meaning growing up, but I never thought much of it.  
+    Funny how it only started to make sense after I chose social work.
+  </p>
 
     </div>
   </section>
 
+
   <!-- Identity & Mental Health Impact -->
-  <section id="impact" class="section">
+  <section id="impact" class="section fade-in-up">
     <div class="section-header">
       <h2>Identity &amp; Mental Health</h2>
       <p class="section-description">
-        How my experiences in two vastly different worlds shaped how I see myself — and stay with myself
+        How my experiences in two vastly different worlds shaped how 
+        I see myself — and stay with myself
       </p>
     </div>
     <div class="identity-grid">
@@ -405,7 +102,8 @@
           <img src="identity2.jpg" alt="Madison, Wisconsin" />
           <figcaption>
             <span class="caption-text">2023.1.29 · Madison, Wisconsin</span><br/>
-            <span class="caption-meta">That night a snowstorm hit, and I went downstairs to build a snow chicken.</span>
+            <span class="caption-meta">That night a snowstorm hit, 
+                and I went downstairs to build a snow chicken.</span>
           </figcaption>
         </figure>      
         
@@ -413,7 +111,8 @@
           <img src="identity.jpg" alt="Tattoo: Inner River" />
           <figcaption>
             <span class="caption-text">2023.11.23 · Inner River</span><br/>
-            <span class="caption-meta">At one point, getting tattoo was the only strategy I had to stay alive.</span>
+            <span class="caption-meta">At one point, getting tattoo was the only strategy 
+                I had to stay alive.</span>
           </figcaption>
         </figure>
       
@@ -421,59 +120,88 @@
           <img src="identity3.jpg" alt="Chongqing Central Park" />
           <figcaption>
             <span class="caption-text">2024.7.10 · Chongqing Central Park</span><br/>
-            <span class="caption-meta">Returned after three years away. Summer clung to the air like a memory that didn’t want to leave.</span>
+            <span class="caption-meta">Returned after three years away. 
+                Summer clung to the air like a memory that didn’t want to leave.</span>
           </figcaption>
         </figure>
       </div>
       
       <div class="container why-content">
-        <p>I’ve lived between two completely different worlds — the snowy stillness of Madison and the heat and pulse of Chongqing. My hometown only snowed once in 19 years. In Madison, I spent four winters walking across the frozen Mendota Lake.</p>
+        <p>I’ve lived between two completely different worlds — the snowy stillness of Madison 
+            and the heat and pulse of Chongqing. My hometown only snowed once in 19 years. 
+            In Madison, I spent four winters walking across the frozen Mendota Lake.</p>
       
-        <p>After graduating college, I spent a year back in China. That’s when I started asking real questions — like where I want to build a life, what’s worth letting go of, and what actually matters. It was the first time I felt like I wasn’t just reacting, but really choosing.</p>
+        <p>After graduating college, I returned to China for a year.  
+            That’s when I started asking real questions — like where I want to build a life, 
+            what’s worth letting go of, and what actually matters.  </p>
+  
       
       </div>
-      
-          
+             
   </section>
   
+  
+
 <!-- Core Motivation -->
 
-<section id="why-core" class="section">
+<section id="why-core" class="section fade-in-up">
     <div class="section-header">
         <h2>My Core Motivation</h2>
-        <p class="section-description">
-          Turning the mess into momentum, and loss into something that flows.
-        </p>
+
       </div>
 
     <div class="container why-content">
-        <p>I didn’t grow up thinking I’d become a social worker. I never imagined myself as someone who could openly speak their truth. But over the past two years, life simply wouldn’t let me stay silent.</p>
+        <p>I didn’t grow up thinking I’d become a social worker. I didn’t think I’d ever 
+            speak this much truth out loud. But over the past two years, 
+            life stopped giving me the option to stay quiet.</p>
     
-        <p>For as long as I can remember, my home carried tension. My mother endured domestic violence for decades, long before I knew the words for it. One night, when I was 14, she ran into my room, my father close behind. They circled my bed, yelling and grabbing, while I sat frozen. She climbed onto the mattress, called out my name, and begged me to save her. I was too young to protect anyone, yet too aware to remain untouched.</p>
+        <p>For as long as I can remember, my home carried tension. My mother endured 
+            domestic violence for decades, long before I knew what to call it. 
+            One night, when I was 14, she ran into my room, my father close behind. 
+            They circled my bed, yelling and grabbing, while I sat frozen. 
+            She climbed onto the mattress, called out my name, and begged me to save her. 
+            I was too young to protect anyone, yet too aware to forget.</p>
     
-        <p>In May 2023, I graduated from college. I didn’t want to return home, but I had no choice. The company offering me an interview quickly backed away after discovering I’d need sponsorship to work legally in the U.S.</p>
+        <p>In May 2023, I graduated from college. I didn’t want to return home, but I had no choice. 
+            The company offering me an interview quickly backed away after discovering I’d need 
+            sponsorship to work legally in the U.S.</p>
     
-        <p>That September, my grandmother passed away. I held her hand until it turned cold. Days later, my rabbit Phil—my first pet, the emotional glue in a four-year relationship—died suddenly. Soon after, the relationship itself ended. Through all of this, I couldn’t tell my family anything. To them, I was their good, straight daughter stuck in the U.S. because of COVID—still the perfect student they always expected me to be. They didn't know the truth: that I’d long realized I liked girls, that my home in Madison felt safer than the one I had with them, and that I stayed away because I feared what they might think.</p>
+        <p>That fall, my grandmother passed away. I held her hand until it turned cold. 
+            Days later, my bunny Phil—my first pet, the emotional glue in a four-year 
+            relationship—died suddenly. Soon after, the relationship itself ended. 
+            Through all of this, I couldn’t tell my family anything. To them, I was their good, 
+            straight daughter stuck in the U.S. because of COVID—still the perfect student 
+            they always expected me to be. They didn't know the truth: that I’d long realized 
+            I liked girls, that my home in Madison felt safer than the one I had with them, 
+            and that I stayed away because I feared what they might think.</p>
     
-        <p>The losses piled up quickly, and the ground beneath my feet felt increasingly unstable. Meanwhile, my parents began discussing divorce, yet they still expected me to mediate—to maintain the illusion of peace. Quietly, I was falling apart, trapped in a house where I’d never felt safe, weighed down by grief nobody knew how to handle.</p>
+        <p>The losses piled up quickly, and the ground beneath my feet felt increasingly unstable. 
+            Meanwhile, my parents began discussing divorce, yet they still expected me 
+            to mediate—to maintain the illusion of peace. I was falling apart quietly, inside a house 
+            where I’d never felt safe, holding grief nobody knew how to name.</p>
     
-        <p>Finally, in October, I left. I flew to Busan to stay with my best friend, spending hours by the ocean, reflecting. I had no clear plans, only pressing questions: <em>What do I truly want to do? What’s the core value that remains unshaken, no matter how much I lose?</em></p>
+        <p>Finally, in October, I left. I flew to Busan to stay with my best friend, 
+            spending hours by the ocean, reflecting. I had no clear plans, 
+            only pressing questions: <em>What do I truly want to do? What’s the core value 
+                that remains unshaken, no matter how much I lose?</em></p>
     
         <div class="highlight-box">
-            <p>Then I knew—I would pursue social work. Because I’ve lived in spaces where nobody knew how to ask for help, and I want to be the one who hears the silence and responds.</p>
+            <p>Then I knew—I would pursue social work. Because I’ve lived in spaces 
+                where nobody knew how to ask for help, and I want to be the one 
+                who hears the silence and responds.</p>
         </div>
         
     </div>
 
    
-
-      
         <div class="carousel-container">
           <div class="carousel-slide active">
             <img src="why1.jpg" alt="baby photo" />
             <div class="carousel-caption">
               <span class="caption-text">2001 · Home, Chongqing</span><br/>
-              <span class="caption-meta">My mom placed me—barely six months old—on my dad’s shoulder. I don’t remember this moment, but I’ve always carried the weight of being someone’s hope.</span>
+              <span class="caption-meta">My mom placed me—barely six months old—on my dad’s 
+                shoulder. I don’t remember this moment, but I’ve always carried the 
+                weight of being someone’s hope.</span>
             </div>
           </div>
       
@@ -481,15 +209,27 @@
             <img src="why2.jpg" alt="childhood" />
             <div class="carousel-caption">
               <span class="caption-text">2005 · On a plane</span><br/>
-              <span class="caption-meta">I barely remember this trip. I just remember rushing toward the ocean—wild, fearless—and my dad catching me just in time.</span>
+              <span class="caption-meta">I barely remember this trip. I just remember 
+                rushing toward the ocean—wild, fearless—and my dad catching me just in time.</span>
             </div>
           </div>
-    
+        
+    <!-- 插入海绵宝宝彩蛋卡片 -->
+    <div class="carousel-slide">
+        <img src="spondgebob.gif" alt="SpongeBob Time Card" />
+        <div class="carousel-caption">
+          <span class="caption-text">20XX · the Earth</span><br/>
+          <span class="caption-meta">A casual time skip over an emotional black hole.</span>
+        </div>
+      </div>
+      
+
           <div class="carousel-slide">
             <img src="why4.jpg" alt="Indonesia children" />
             <div class="carousel-caption">
               <span class="caption-text">2019 · Rural Indonesia</span><br/>
-              <span class="caption-meta">We restored a forgotten temple in a remote village. The quiet, the rhythm of work—it gave me a sense of shared dignity.</span>
+              <span class="caption-meta">We restored a forgotten temple in a remote village. 
+                The quiet, the rhythm of work—it gave me a sense of shared dignity.</span>
             </div>
           </div>
       
@@ -497,7 +237,9 @@
             <img src="why6.jpg" alt="Classroom in Indonesia" />
             <div class="carousel-caption">
               <span class="caption-text">2019 · Yayasan Taman Permata Hati, Bali</span><br/>
-              <span class="caption-meta">There were so many kids, and just one woman they all called “Mom.” When they sang for us, it broke something open in me. It made me start wondering what care could look like.</span>
+              <span class="caption-meta">There were so many kids, and just one woman 
+                they all called “Mom.” When they sang for us, it broke something open in me. 
+                It made me start wondering what care could look like.</span>
             </div>
           </div>
       
@@ -506,7 +248,8 @@
             <img src="why3.jpg" alt="abstract painting" />
             <div class="carousel-caption">
               <span class="caption-text">2020 · Madison, WI</span><br/>
-              <span class="caption-meta">I liked drawing abstractly—because some emotions couldn’t take shape, only color and motion.</span>
+              <span class="caption-meta">I liked drawing abstractly—because some emotions 
+                couldn’t take shape, only color and motion.</span>
             </div>
           </div>
       
@@ -515,7 +258,9 @@
             <img src="why7.jpg" alt="forest moment" />
             <div class="carousel-caption">
               <span class="caption-text">2021 · Groves behind Memorial Center at UW-Madison</span><br/>
-              <span class="caption-meta">I was struggling in college—torn between business and liberal arts. Every week I passed the Social Work School to get to my stats class, never imagining I’d one day belong there.</span>
+              <span class="caption-meta">I was struggling in college—torn between business 
+                and liberal arts. Every week I passed the Social Work School to get to 
+                my stats class, never imagining I’d one day belong there.</span>
             </div>
           </div>
 
@@ -523,7 +268,9 @@
             <img src="why9.jpg" alt="Phil the rabbit" />
             <div class="carousel-caption">
               <span class="caption-text">2021 · Madison, WI</span><br/>
-              <span class="caption-meta">This is Phil. He was my first pet and the heart of the home I built in my early 20s. In a time of lockdowns and loneliness, he taught me what it meant to care—and be cared for.</span>
+              <span class="caption-meta">This is Phil. He was my first pet and the heart of 
+                the home I built in my early 20s. In a time of lockdowns and loneliness, 
+                he taught me what it meant to care—and be cared for.</span>
             </div>
           </div>
           
@@ -532,7 +279,8 @@
             <img src="why8.jpg" alt="ocean reflection" />
             <div class="carousel-caption">
               <span class="caption-text">2023 · Busan, South Korea</span><br/>
-              <span class="caption-meta">This was when I seriously considered social work. That year I lost my grandma, my pet, and the “home” I built over four years. I realized what keeps me going is helping others through what I couldn’t go through alone.</span>
+              <span class="caption-meta">That year I lost a lot. But it gave me 
+                a kind of clarity I hadn’t had before.</span>
             </div>
           </div>
       
@@ -543,105 +291,65 @@
        
 
         <div class="highlight-box">
-          <p>I don’t know where this road ends, but I’m learning to walk it—with softness in my step, truth in my voice, and eyes open for those walking beside me.</p>
+          <p>I don’t know where this road ends, but I’m learning to walk it—with softness in my step, 
+            truth in my voice, and eyes open for those walking beside me.</p>
         </div>
         
   </section>
 
 
+
    <!-- Roots-Crew -->
-   <section id="self-care" class="section">
+   <section id="self-care" class="section fade-in-up">
     <div class="section-header">
       <h2>Roots Crew</h2>
-      <p class="section-description">Self-care isn’t solo — it’s shared.</p>
+      <p class="section-description">My islands, inside-out.</p>
     </div>
   
     <div class="poker-grid">
       <div class="poker-card" style="--i: 0;">
         <img src="community1.jpg" alt="Fiancée"/>
-        <p class="caption">Sarah, my fiancée. Softest place to land.</p>
-      </div>
-      <div class="poker-card" style="--i: 1;">
-        <img src="community2.jpg" alt="Friends NYC"/>
-        <p class="caption">Friends in New York. Late night, loud laughs, love.</p>
+        <p class="caption-title"> Sarah, my fiancée.</p>
       </div>
       <div class="poker-card" style="--i: 2;">
-        <img src="community3.jpg" alt="Busan Friend"/>
-        <p class="caption">My Busan soul sister. We walked for hours, barefoot and free.</p>
-      </div>
-      <div class="poker-card" style="--i: 3;">
-        <img src="community4.jpg" alt="Poni the cat"/>
-        <p class="caption">Poni. She watches me like a little therapist who charges in kibble.</p>
+        <img src="community2.jpg" alt="Friends NYC"/>
+        <p class="caption-title"> Friends in New York.</p>
+        <p class="caption-text">Xinwei, Yun, Me, Eda</p>
       </div>
       <div class="poker-card" style="--i: 4;">
-        <img src="community5.jpg" alt="Gym"/>
-        <p class="caption">Gym has been my anchor. Proof that I can grow through pain.</p>
+        <img src="community3.jpg" alt="Busan Friend"/>
+        <p class="caption-title"> Friend in Busan. </p>
+        <p class="caption-text">She is a kind of harbor.</p>
       </div>
-      <div class="poker-card" style="--i: 5;">
+      <div class="poker-card" style="--i: 1;">
+        <img src="community4.jpg" alt="Poni the cat"/>
+        <p class="caption-title"> Poni. </p> 
+        <p class="caption-text">She watches me like a little therapist who charges in kibble.</p>
+      </div>
+      <div class="poker-card" style="--i: 3;">
+        <img src="community5.jpg" alt="Gym"/>
+        <p class="caption-title"> Torturing my body.</p>
+      </div>
+      <div class="poker-card" style="--i: -1;">
         <img src="community6.jpg" alt="Phil and Tahani"/>
-        <p class="caption">Phil and Tahani. The rabbit and the cat that built my first home.</p>
+        <p class="caption-title"> Phil and Tahani. </p>
+        <p class="caption-text"> Two fluffies who built my first home.</p>
       </div>
     </div>
   </section>
 
+<!-- 动画彩蛋 -->
+<p class="type-bounce">Some chapters were redacted by survival instinct...</p>
 
-  <footer id="footer" class="footer">
-    <p style="margin-top: 1em;">keep walking. Eyes open, heart soft.</p>
-  
-    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #aaa;">MSW · NYU · Spring 2025· Nico Shumin Luo</p>
-  </footer>
+<!-- Footer -->
+<footer id="footer" class="footer fade-in-up">
+  <p style="margin-top: 1em; font-style: italic;">Still walking. Eyes open, heart soft.</p>
+  <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #aaa;">
+    Nico Shumin Luo (罗舒民) · MSW Candidate, NYU · 2024–2026
+  </p>
+</footer>
 
-  <script>
-    tsParticles.load('particles-js', { /* … */ });
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click',e=>{
-        e.preventDefault();
-        document.querySelector(anchor.getAttribute('href'))
-          .scrollIntoView({behavior:'smooth'});
-      });
-    });
-  </script>
+<!-- JS放这里最好 -->
+<script src="script.js"></script>
 </body>
-<script>
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-nav.prev');
-    const nextBtn = document.querySelector('.carousel-nav.next');
-    let currentIndex = 0;
-  
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-  
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      showSlide(currentIndex);
-    });
-  
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      showSlide(currentIndex);
-    });
-  
-    // 初始化显示第一张
-    showSlide(currentIndex);
-
-
-    document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("click", () => {
-    const imgSrc = card.querySelector("img").src;
-    const caption = card.dataset.caption;
-
-    document.getElementById("overlay-img").src = imgSrc;
-    document.getElementById("overlay-caption").textContent = caption;
-    document.getElementById("overlay").classList.remove("hidden");
-  });
-});
-
-document.getElementById("overlay-close").addEventListener("click", () => {
-  document.getElementById("overlay").classList.add("hidden");
-});
-  </script>
-  
 </html>
