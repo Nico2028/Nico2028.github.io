@@ -72,9 +72,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   
   window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.classList.toggle('scrolled', window.scrollY > 10);
+    const burgerBar = document.querySelector('.hamburger-menu');
+    if (burgerBar) {
+      burgerBar.classList.toggle('scrolled', window.scrollY > 10);
+    }
   });
+  
 
   const whisper = document.querySelector('.type-bounce');
 if (whisper) {
@@ -88,3 +91,27 @@ if (whisper) {
     whisper.appendChild(span);
   });
 }
+
+// Hamburger menu toggle
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-open');
+    burger.classList.toggle('active');
+  });
+}
+
+
+// 点击菜单项后自动关闭汉堡菜单
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+const menuToggle = document.getElementById('menu-toggle');
+
+mobileNavLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (menuToggle) {
+      menuToggle.checked = false;
+    }
+  });
+});
